@@ -6,16 +6,16 @@ export class ProdutoCaracteristicaEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ name: 'nome', length: 100, nullable: false })
+  @Column({ length: 100 })
   nome: string;
 
-  @Column({ name: 'descricao', length: 255, nullable: false })
+  @Column({ length: 255 })
   descricao: string;
 
-  @ManyToOne(() => ProdutoEntity, (produto) => produto.imagens, {
-    orphanedRowAction: 'delete',
+  @ManyToOne(() => ProdutoEntity, (produto) => produto.caracteristicas, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
+    eager: false,
   })
   produto: ProdutoEntity;
 }
